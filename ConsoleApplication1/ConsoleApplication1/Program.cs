@@ -80,15 +80,20 @@ namespace ConsoleApplication1
             {
                 case "copy":
                     Console.WriteLine("(1)Файл или (2)дирректорию? (Нажмите 1 или 2 для выбора)");
-                    int ford = Convert.ToInt32(Console.ReadLine());
+                    
+                        int ford = Convert.ToInt32(Console.ReadLine());
+                    
                     if (ford == 1)
                     {
-                        Console.WriteLine("Введите путь, откуда нужно копировать");
-                        var input1 = Console.ReadLine();
-                        Console.WriteLine("Введите путь, куда нужно копировать");
-                        var input2 = Console.ReadLine();
-                        File.Copy(input1, input2, true);
-                      
+                        
+                            Console.WriteLine("Введите путь, откуда нужно копировать");
+                            var input1 = Console.ReadLine();
+                            Console.WriteLine("Введите путь, куда нужно копировать");
+                            var input2 = Console.ReadLine();
+                            File.Copy(input1, input2, true);
+                        
+                            Console.WriteLine("Введена директория неверного формата, попробуйте ещё раз");
+                                                
                     }
                     else if (ford == 2)
                     {
@@ -99,6 +104,8 @@ namespace ConsoleApplication1
                         CopyDir(input1, input2);
                     }
                     break;
+                    
+                
 
                 case "delete":
                     Console.WriteLine("(1)Файл или (2)дирректорию? (Нажмите 1 или 2 для выбора)");
@@ -127,7 +134,10 @@ namespace ConsoleApplication1
                         }
                     }    
                         break;
-               
+                case "help":
+                    Console.WriteLine("Список команд: copy - копировать файл\\директорию, delete - удалить файл\\дирректорию");
+                    break;
+
             }
         }
 
@@ -139,25 +149,13 @@ namespace ConsoleApplication1
             do
             {
                 
-                Console.WriteLine("Введите директорию || Нажмите TAB для вывода списка команд" );
-
-                if (Console.ReadKey().Key == ConsoleKey.Tab)
-                {
-                    Console.WriteLine("Список команд: copy - копировать файл\\директорию, delete - удалить файл\\дирректорию");
-                }
-                
+              Console.WriteLine("Введите директорию || Введите help для вывода списка команд" );                
               string input = Console.ReadLine();
-                
               Dir(input);
               Do(input);
-            
               Console.WriteLine("Нажмите любую клавишу для продолжения || Escape, чтобы выйти ");
-              File.WriteAllText(@"info.json", input);
-                
-               
-                
-
-
+              File.WriteAllText(@"info.json", input); 
+             
             } while (Console.ReadKey().Key != ConsoleKey.Escape);
 
 
